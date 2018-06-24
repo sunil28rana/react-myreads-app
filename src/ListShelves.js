@@ -18,7 +18,7 @@ class ListShelves extends Component {
         </div>
         <div className='list-books-content'>
           <div>
-            { /* Display of BookShelves in home page accoriding to shelfves titles */ }
+            { /* Display of BookShelves in home page accoriding to shelfves titles
             {Object.keys(booksByShelf).map(shelf =>
               <BookShelf
                 key={shelf}
@@ -26,6 +26,25 @@ class ListShelves extends Component {
                 shelfTitle={shelf.replace( /([a-z])([A-Z])/g, '$1 $2' ).toLowerCase().split(' ').map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' ')}
                 updateShelf={updateShelf}
               />)}
+              */ }
+              <BookShelf
+                key='currentlyReading'
+                books={booksByShelf['currentlyReading'] ? booksByShelf['currentlyReading'] : []}
+                shelfTitle='Currently Reading'
+                updateShelf={updateShelf}
+              />
+              <BookShelf
+                key='wantToRead'
+                books={booksByShelf['wantToRead'] ? booksByShelf['wantToRead'] : []}
+                shelfTitle='Want to Read'
+                updateShelf={updateShelf}
+              />
+              <BookShelf
+                key='read'
+                books={booksByShelf['read'] ? booksByShelf['read'] : []}
+                shelfTitle='Read'
+                updateShelf={updateShelf}
+              />
           </div>
         </div>
         <div className='open-search'>

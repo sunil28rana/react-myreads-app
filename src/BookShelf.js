@@ -1,6 +1,7 @@
 import React from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types';
+import sortBy from 'sort-by'
 
 function BookShelf(props) {
   const { shelfTitle, books, updateShelf } = props;
@@ -10,7 +11,7 @@ function BookShelf(props) {
       <div className='bookshelf-books'>
         <ol className='books-grid'>
           {
-            books.map(book =>
+            books.sort(sortBy('title')).map(book =>
             <li key={book.id}>
               <Book book={book} updateShelf={updateShelf}/>
             </li>
