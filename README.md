@@ -1,9 +1,9 @@
 # react-myreads-app
 
-This project is a bookshelf app which is built with [React](https://reactjs.org/) and [Create React App](https://reactjs.org/). This app allows you to select and categorize books you have read, are currently reading, or want to read. 
+This project is a bookshelf app which is built with [React](https://reactjs.org/) and [Create React App](https://reactjs.org/). This app allows you to select and categorize books you have read, are currently reading, or want to read.
 
 <p align='center'>
-<img src='https://github.com/sunil28rana/react-myreads-app/blob/master/src/img/project.gif' width='600' alt='react-myreads-app'>
+<img src='https://github.com/sunil28rana/react-myreads-app/blob/master/src/img/project.png' width='600' alt='react-myreads-app'>
 </p>
 
 ## Getting Started
@@ -43,4 +43,3 @@ See also the list of [contributors](https://github.com/sunil28rana/react-myreads
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
