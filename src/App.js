@@ -1,7 +1,8 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-import './App.css';
-import ListBooks from './ListBooks';
+import './App.css'
+import ListShelves from './ListShelves'
+import { Route, Link } from 'react-router-dom'
 class BooksApp extends React.Component {
   state = {
     /**
@@ -28,11 +29,36 @@ class BooksApp extends React.Component {
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf);
     console.log('updated');
+    // BooksAPI.getAll().then((books) => {
+      // this.setState(() => ({
+      //   books
+      // }))
+
+    // })
     this.setState((currentState) => ({
       books: currentState.books.filter( b => {
         return b.id !== book.id;
       })
     }))
+
+    // this.setState((currentState) => ({
+    //   books: currentState.books.push(book)
+    //   }))
+    const newBooks = [];
+    for (let b of this.state.books) {
+      if (b.id === book.id) {
+        b.shelf = shelf;
+      }
+      newBooks.push(b);
+    }
+
+    console.log('new books',newBooks);
+    console.log('books are', this.state.books);
+
+    this.setState((currentState) => ({
+      books: newBooks
+    }))
+
   }
 
   render() {
@@ -48,12 +74,13 @@ class BooksApp extends React.Component {
     };
 
     return (
-      <div className="app">
-        {this.state.showSearchPage ? (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-              <div className="search-books-input-wrapper">
+      <div className='app'>
+        <Route path='/search' render={() => (
+          <div className='search-books'>
+            <div className='search-books-bar'>
+              <Link className='close-search' to='/'>Close</Link>
+
+              <div className='search-books-input-wrapper'>
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
                   You can find these search terms here:
@@ -62,18 +89,22 @@ class BooksApp extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
+
+                <input type='text' placeholder='Search by title or author'/>
 
               </div>
             </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
+            <div className='search-books-results'>
+              <ol className='books-grid'>
+
+              </ol>
             </div>
           </div>
-        ) : (
-          <ListBooks booksByShelf={booksByShelf} onChangeShelf={this.updateShelf} />
+        )} />
+      <Route exact path='/' render={() => (
+          <ListShelves booksByShelf={booksByShelf} updateShelf={this.updateShelf} />
 
-        )}
+        )} />
       </div>
     )
   }
