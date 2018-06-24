@@ -50,7 +50,6 @@ class SearchPage extends Component {
       <div className='search-books'>
         <div className='search-books-bar'>
           <Link className='close-search' to='/'>Close</Link>
-
           <div className='search-books-input-wrapper'>
             <input
               type='text'
@@ -58,7 +57,6 @@ class SearchPage extends Component {
               onChange={event => this.search(event.target.value)}
               value={this.state.value}
             />
-
           </div>
         </div>
         <div className='search-books-results'>
@@ -66,6 +64,7 @@ class SearchPage extends Component {
             {
                results.map(book => (
                 <li key={book.id}>
+                  { /* Book component */ }
                   <Book book={book} updateShelf={updateShelf}/>
                 </li>
               ))
