@@ -6,12 +6,18 @@ class Book extends Component {
     updateShelf: PropTypes.func.isRequired
   }
 
-  state = {
-
-  }
-
   render() {
     const { book, updateShelf } = this.props;
+
+    // error handleing if there is no image of book
+    let thumbnail;
+    if (book.imageLinks) {
+      thumbnail = book.imageLinks.smallThumbnail
+    } else {
+      thumbnail = ''
+    }
+
+
     return (
       <div className='book'>
         <div className='book-top'>
@@ -20,7 +26,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${book.imageLinks.thumbnail})` }}>
+              backgroundImage: `url(${thumbnail})` }}>
           </div>
           <div className='book-shelf-changer'>
             <select
